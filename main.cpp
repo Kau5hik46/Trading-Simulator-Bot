@@ -31,22 +31,29 @@ int main(int argc, char const *argv[]) // driver code
     CSV* data = new CSV("data.tsv"); // only one object is instantiated
 
     // Creating an account (bank+trading) for the user Abhishek
-    Account* Abhishek = new Account("Abhishek", 100000);
+    string name;
+    cout << "Please enter the account holder name: ";
+    cin >> name;
+    float deposit;
+    cout << "Please enter inital balance: ";
+    cin >> deposit;
+    Account* account = new Account(name, deposit);
 
     // Market is established with the above data
     Market* NSE = new Market(data); 
 
     //Strategy of trading bot is defined as a CONCRETE STRATEGY linked to Account: Abhishek
-    Buydip* bd = new Buydip(NSE, Abhishek);
+    Buydip* bd = new Buydip(NSE, account);
 
     // Bot is an observer of the stock market NSE and has the strategy of "Buydip"
-    Bot* b = new Bot(Abhishek, NSE, bd);
+    Bot* b = new Bot(account, NSE, bd);
 
     // Stock market is run, indicating 1 second = 1 day
     NSE->run();
 
     // Finally we are printing the account information
-    Abhishek->information();
+    account->information();
+    cout << "Total profit earned: " << account->take_profit(deposit) << endl;
 
     return 0;
 }

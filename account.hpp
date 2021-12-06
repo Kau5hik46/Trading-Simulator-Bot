@@ -134,6 +134,10 @@ public:
         return total_value - cash;
     }
 
+    float take_profit(float dep)
+    {
+        return get_total_value() - dep;
+    }
     //utility function to print out all the data related to account
     void information()
     {
@@ -144,7 +148,11 @@ public:
         cout << endl;
     }
 
-    ~Account(){}
+    ~Account()
+    {
+        for(auto s: subjects)
+            unsubscribe(s.first);
+    }
 };
 
 int Account::num_accounts = 0;

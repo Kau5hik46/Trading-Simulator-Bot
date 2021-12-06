@@ -63,7 +63,7 @@ public:
 
     void unsubscribe(Subject* sub)
     {
-        subjects.erase(sub);
+        // subjects.erase(sub);
         sub->detach(this);
     }
 

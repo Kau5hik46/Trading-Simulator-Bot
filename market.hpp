@@ -16,10 +16,11 @@ using namespace std;
 class Market
 {
     CSV* market_data; //input data
-    int time; // day wise time data
+    
     map<string, Stock*> stocks; // stock names and pointer pairs
     
 public:
+    int time; // day wise time data
     Market(CSV* ip)
     {
         time = 2; //input data column 3
@@ -78,6 +79,7 @@ public:
     // prints the information of all the stocks at one place based on the current price
     void current_info()
     {
+        cout << "Day " << to_string(time-1) << endl;
         for(auto i : stocks)
         {
             i.second->get_info();

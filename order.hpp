@@ -88,7 +88,7 @@ public:
     }
     string set_details()
     {
-        order = "Order successfully executed:\n" + account->get_account_name() + " placed a ";
+        order = "Order successfully executed on day " + to_string(market->time - 1) + ":\n" + account->get_account_name() + " placed a ";
         string s = side > 0 ? "buy " : "sell ";
         s = limit? "limit order " : "market order ";
         order+=s;
